@@ -44,8 +44,7 @@ def create_user():
 def get_users():
   try:
     users = User.query.all()
-    if users:
-      return make_response(jsonify([user.json() for user in users]), 200)
+    return make_response(jsonify([user.json() for user in users]), 200)
   except:
     return make_response(jsonify({'message': 'error retrieving list'}), 404)
 
