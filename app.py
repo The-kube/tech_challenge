@@ -1,15 +1,16 @@
 from flask import Flask, request, jsonify, make_response
 from flask_sqlalchemy import SQLAlchemy
+from os import environ
 
 #users = [{"id": 1, "name": "bob"}, {"id": 2, "name": "john"}]
 
 app = Flask(__name__)
 
-DB_URL= "postgresql://postgres:postgres@localhost:5432/postgres"
-#app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('DB_URL')
-app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL
-db = SQLAlchemy()
-db.init_app(app)
+#DB_URL="postgresql://postgres:postgres@flask_db:5432/postgres"
+app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('DB_URL')
+#app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL
+db = SQLAlchemy(app)
+#db.init_app(app)
 
 class User(db.Model):
     __tablename__ = 'users'
@@ -21,11 +22,11 @@ class User(db.Model):
     def json(self):
         return {'id': self.id,'username': self.username, 'email': self.email}
 
-#db.create_all()
-""" Creating Database with App Context"""
-def create_db():
-    with app.app_context():
-        db.create_all()
+db.create_all()
+#""" Creating Database with App Context"""
+#def create_db():
+#    with app.app_context():
+#        db.create_all()
 
 # create a user
 @app.route('/user', methods=['POST'])
@@ -86,6 +87,6 @@ def delete_user(id):
   except:
     return make_response(jsonify({'message': 'error deleting user'}), 500)
 
-if __name__ == '__main__':
-    create_db()
-    app.run(port = 5000, debug=True)
+#if __name__ == '__main__':
+#    create_db()
+#    app.run(port = 5000, debug=True)
