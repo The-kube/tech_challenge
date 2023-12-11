@@ -42,7 +42,7 @@ We should now have kubectl configured for the EKS cluster, let's deploy the helm
 ```
 cd helm
 pwd
-tech_challenge/terraform/helm
+...path/tech_challenge/terraform/helm
 
 terraform init
 terraform apply
@@ -64,7 +64,7 @@ Use this address in /etc/hosts, IP creation may take some time
 ```
 ping a925040944d294d5584d40fd9f78b946-2d225911ab5932af.elb.eu-north-1.amazonaws.com
 
-echo "13.51.111.65 corradoapiapp.io" | sudo tee -a  /etc/hosts
+echo "51.21.30.98 corradoapiapp.io" | sudo tee -a  /etc/hosts
 ```
 You can now send requests to "corradoapiapp.io" endpoint like:
 ```
@@ -93,10 +93,11 @@ curl --header "Content-Type: application/json" \
   http://corradoapiapp.io/user/4
 ```
 # Uninstall
+Note: Ingress delete may take some time
 ```
 kubectl delete -f ../../ingress/deploy.yaml
 pwd
-tech_challenge/terraform/helm
+..../tech_challenge/terraform/helm
 terraform destroy
 cd ..
 terraform destroy
