@@ -12,7 +12,7 @@ Check more on *requests.http *
  - Variabilize more Helm Values
  - Automatize/script more the entire process
  - Freeze pip requirements.txt
- - Improve AWS Terraform IAM roles
+ - Improve AWS Terraform IAM roles, credentials
  - Integrate Ingress into helm deploy
 ## Requirements
 - awscli, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
@@ -27,8 +27,12 @@ get AWS_ACCESS_KEY_ID=XXXXXXXXXXXXXXX
 get AWS_SECRET_ACCESS_KEY=XXXXXXXXXXXXXXX
 ```
 ## Usage
+configure AWS credentials
 ```
 aws configure
+```
+Create EKS cluster and configure kubectl
+```
 cd terraform
 terraform init
 terraform apply
@@ -39,6 +43,7 @@ We should now have kubectl configured for the EKS cluster, let's deploy the helm
 cd helm
 pwd
 tech_challenge/terraform/helm
+
 terraform init
 terraform apply
 ```
@@ -55,7 +60,7 @@ kubectl get ing
 NAME                 CLASS   HOSTS              ADDRESS                                                                          PORTS   AGE
 apiapp-api-ingress   nginx   corradoapiapp.io   a925040944d294d5584d40fd9f78b946-2d225911ab5932af.elb.eu-north-1.amazonaws.com   80      2m32s
 ```
-Use this address in /etc/hosts
+Use this address in /etc/hosts, IP creation may take some time
 ```
 ping a925040944d294d5584d40fd9f78b946-2d225911ab5932af.elb.eu-north-1.amazonaws.com
 
