@@ -4,10 +4,13 @@ metadata:
   name: flask-api-ingress
   namespace: default
   annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
 spec:
   ingressClassName: nginx
+#  ingressClassName: alb
   rules:
-  - host: "apiapp.io"
+  - host: "corradoapiapp.io"
     http:
       paths:
       - pathType: Prefix

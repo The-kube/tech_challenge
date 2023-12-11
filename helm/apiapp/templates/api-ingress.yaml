@@ -4,10 +4,13 @@ metadata:
   name: {{ include "apiapp.fullname" . }}-api-ingress
   labels:
   {{- include "apiapp.labels" . | nindent 4 }}
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
 spec:
   ingressClassName: nginx
   rules:
-  - host: apiapp.io
+  - host: corradoapiapp.io
     http:
       paths:
       - backend:

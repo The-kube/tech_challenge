@@ -1,9 +1,9 @@
-POST http://127.0.0.1:6000/user HTTP/1.1
+POST http://172.20.172.86:30000/user HTTP/1.1
 content-type: application/json
 
 {
-  "username": "bob john",
-  "email": "abcd@mail.com"
+  "username": "pippo john",
+  "email": "pippo@mail.com"
 }
 ###
 GET http://127.0.0.1:6000/users HTTP/1.1
@@ -16,5 +16,61 @@ PUT http://127.0.0.1:6000/user/39 HTTP/1.1
 ###
 GET http://127.0.0.1:6000/health HTTP/1.1
 ###
-GET http://127.0.0.1:6000/details HTTP/1.1
+GET http://192.168.49.2:6000/details HTTP/1.1
+###
+###########################################################################################
+###
+GET http://corradoapiapp.io/health HTTP/1.1
+###
+POST http://corradoapiapp.io/user HTTP/1.1
+content-type: application/json
+
+{
+  "username": "reese john",
+  "email": "resse@mail.com"
+}
+###
+GET http://corradoapiapp.io/details HTTP/1.1
+###
+GET http://corradoapiapp.io/users HTTP/1.1
+###
+GET http://corradoapiapp.io/users/1 HTTP/1.1
+###
+DELETE http://corradoapiapp.io/user/1 HTTP/1.1
+###
+PUT http://corradoapiapp.io/user/1 HTTP/1.1
+content-type: application/json
+
+{
+  "username": "aaa john",
+  "email": "aaaaaaaa@mail.com"
+}
+########################################################################################
+###
+###
+GET http://192.168.49.2:30000/health HTTP/1.1
+###
+POST http://192.168.49.2:30000/user HTTP/1.1
+content-type: application/json
+
+{
+  "username": "pippo john",
+  "email": "pippo@mail.com"
+}
+###
+GET http://192.168.49.2:30000/users HTTP/1.1
+###
+GET http://192.168.49.2:30000/users/1 HTTP/1.1
+###
+DELETE http://192.168.49.2:30000/user/1 HTTP/1.1
+###
+PUT http://192.168.49.2:30000/user/39 HTTP/1.1
+content-type: application/json
+
+{
+  "username": "aaa john",
+  "email": "aaaaaaaa@mail.com"
+}
+###
+GET http://192.168.49.2:30000/details HTTP/1.1
 ###

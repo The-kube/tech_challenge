@@ -3,15 +3,11 @@ from flask_sqlalchemy import SQLAlchemy
 from os import environ
 import socket
 import time
-#users = [{"id": 1, "name": "bob"}, {"id": 2, "name": "john"}]
 
 app = Flask(__name__)
 
-#DB_URL="postgresql://postgres:postgres@flask_db:5432/postgres"
 app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('DB_URL')
-#app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL
 db = SQLAlchemy(app)
-#db.init_app(app)
 
 # Function to fetch hostname and ip 
 def fetchDetails():
@@ -28,6 +24,7 @@ class User(db.Model):
 
     def json(self):
         return {'id': self.id,'username': self.username, 'email': self.email}
+
 # Connect to database
 tries = 200
 while tries > 0:
