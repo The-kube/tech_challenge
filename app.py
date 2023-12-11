@@ -1,7 +1,8 @@
 from flask import Flask, request, jsonify, make_response
 from flask_sqlalchemy import SQLAlchemy
 from os import environ
-
+import socket
+import time
 #users = [{"id": 1, "name": "bob"}, {"id": 2, "name": "john"}]
 
 app = Flask(__name__)
@@ -12,6 +13,12 @@ app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('DB_URL')
 db = SQLAlchemy(app)
 #db.init_app(app)
 
+# Function to fetch hostname and ip 
+def fetchDetails():
+    hostname = socket.gethostname()
+    host_ip = socket.gethostbyname(hostname)
+    return str(hostname), str(host_ip)
+
 class User(db.Model):
     __tablename__ = 'users'
 
@@ -21,8 +28,18 @@ class User(db.Model):
 
     def json(self):
         return {'id': self.id,'username': self.username, 'email': self.email}
+# Connect to database
+tries = 200
+while tries > 0:
+    try:
+        db.create_all()
+        tries = 0
+    except:
+        tries += -1
+        print('Failed to connect to database. Waiting and then trying again (try countdown: %s)' % tries)
+        time.sleep(3)  # Wait a bit until database is loaded
 
-db.create_all()
+#db.create_all()
 #""" Creating Database with App Context"""
 #def create_db():
 #    with app.app_context():
@@ -39,6 +56,11 @@ def create_user():
     return make_response(jsonify({'message': 'user created'}), 201)
   except:
     return make_response(jsonify({'message': 'error creating user'}), 500)
+
+@app.route('/health', methods=['GET'])
+def health():
+    return make_response(jsonify(
+      {'status': 'UP'}), 201)
 
 # get all users
 @app.route('/users', methods=['GET'])
@@ -87,6 +109,10 @@ def delete_user(id):
   except:
     return make_response(jsonify({'message': 'error deleting user'}), 500)
 
+@app.route("/details")
+def details():
+    hostname, ip = fetchDetails()
+    return make_response(jsonify(HOSTNAME=hostname, IP=ip))
 #if __name__ == '__main__':
 #    create_db()
 #    app.run(port = 5000, debug=True)

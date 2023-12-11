@@ -8,9 +8,13 @@ content-type: application/json
 ###
 GET http://127.0.0.1:6000/users HTTP/1.1
 ###
-GET http://127.0.0.1:6000/users/10 HTTP/1.1
+GET http://127.0.0.1:6000/users/1 HTTP/1.1
 ###
 DELETE http://127.0.0.1:6000/user/1 HTTP/1.1
 ###
 PUT http://127.0.0.1:6000/user/39 HTTP/1.1
+###
+GET http://127.0.0.1:6000/health HTTP/1.1
+###
+GET http://127.0.0.1:6000/details HTTP/1.1
 ###
