@@ -1,7 +1,7 @@
 api:
   flaskApi:
     env:
-      dbUrl: postgresql://postgres:postgres@flapp-db:5432/postgres
+      dbUrl: postgresql://postgres:postgres@apiapp-db:5432/postgres
     image:
       repository: thekube/flask-api-app
       tag: latest

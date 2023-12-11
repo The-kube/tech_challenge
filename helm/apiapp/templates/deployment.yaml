@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "flapp.fullname" . }}-api
+  name: {{ include "apiapp.fullname" . }}-api
   labels:
     app: flask-api
-  {{- include "flapp.labels" . | nindent 4 }}
+  {{- include "apiapp.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.api.replicas }}
   selector:
     matchLabels:
       app: flask-api
-    {{- include "flapp.selectorLabels" . | nindent 6 }}
+    {{- include "apiapp.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
         app: flask-api
-      {{- include "flapp.selectorLabels" . | nindent 8 }}
+      {{- include "apiapp.selectorLabels" . | nindent 8 }}
     spec:
       containers:
       - env:
@@ -34,21 +34,21 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "flapp.fullname" . }}-db
+  name: {{ include "apiapp.fullname" . }}-db
   labels:
     app: flask-db
-  {{- include "flapp.labels" . | nindent 4 }}
+  {{- include "apiapp.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.db.replicas }}
   selector:
     matchLabels:
       app: flask-db
-    {{- include "flapp.selectorLabels" . | nindent 6 }}
+    {{- include "apiapp.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
         app: flask-db
-      {{- include "flapp.selectorLabels" . | nindent 8 }}
+      {{- include "apiapp.selectorLabels" . | nindent 8 }}
     spec:
       containers:
       - env:
@@ -73,4 +73,4 @@ spec:
       volumes:
       - name: flask-db-claim0
         persistentVolumeClaim:
-          claimName: {{ include "flapp.fullname" . }}-db-claim0
+          claimName: {{ include "apiapp.fullname" . }}-db-claim0

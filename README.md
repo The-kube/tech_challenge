@@ -3,12 +3,11 @@ Sources:
 
 https://blog.stoplight.io/python-rest-api
 http://exploreflask.com/en/latest/storing.html
-https://www.cherryservers.com/blog/how-to-install-and-setup-postgresql-server-on-ubuntu-20-04
 https://hub.docker.com/_/postgres
-https://stackoverflow.com/questions/35069027/docker-wait-for-postgresql-to-be-running
 https://github.com/hashicorp/learn-terraform-provision-eks-cluster/
 https://developer.hashicorp.com/terraform/tutorials/kubernetes/eks
 https://github.com/arttor/helmify
+https://kubernetes.io/docs/tasks/access-application-cluster/ingress-minikube/
 
 Start up the DB
 docker compose up -d flask_db

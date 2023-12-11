@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ include "flapp.fullname" . }}-db-claim0
+  name: {{ include "apiapp.fullname" . }}-db-claim0
   labels:
     io.kompose.service: flask-db-claim0
-  {{- include "flapp.labels" . | nindent 4 }}
+  {{- include "apiapp.labels" . | nindent 4 }}
 spec:
   accessModes:
   - ReadWriteOnce
