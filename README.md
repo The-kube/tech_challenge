@@ -167,9 +167,15 @@ kubectl get pods -n ingress-nginx
  >https://github.com/arttor/helmify
 ### Sources:
 >https://blog.stoplight.io/python-rest-api
+>
 >http://exploreflask.com/en/latest/storing.html
+>
 >https://hub.docker.com/_/postgres
+>
 >https://github.com/hashicorp/learn-terraform-provision-eks-cluster/
+>
 >https://developer.hashicorp.com/terraform/tutorials/kubernetes/eks
+>
 >https://github.com/arttor/helmify
+>
 >https://kubernetes.github.io/ingress-nginx/deploy/#aws
