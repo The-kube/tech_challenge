@@ -1,0 +1,32 @@
+api:
+  flaskApi:
+    env:
+      dbUrl: postgresql://postgres:postgres@flapp-db:5432/postgres
+    image:
+      repository: thekube/flask-api-app
+      tag: latest
+  ports:
+  - nodePort: 30000
+    port: 6000
+    targetPort: 6000
+  replicas: 2
+  type: NodePort
+db:
+  flaskDb:
+    env:
+      postgresDb: postgres
+      postgresPassword: postgres
+      postgresUser: postgres
+    image:
+      repository: postgres
+      tag: "12"
+  ports:
+  - name: "5432"
+    port: 5432
+    targetPort: 5432
+  replicas: 1
+  type: ClusterIP
+kubernetesClusterDomain: cluster.local
+pvc:
+  dbClaim0:
+    storageRequest: 100Mi
