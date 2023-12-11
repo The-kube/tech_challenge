@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-api
+  labels:
+    app: flask-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: flask-api
+  template:
+    metadata:
+      labels:
+        app: flask-api
+    spec:
+      containers:
+        - env:
+            - name: DB_URL
+              value: postgresql://postgres:postgres@flask-db:5432/postgres
+          image: thekube/flask-api-app:latest
+          name: flask-api
+          ports:
+            - containerPort: 6000
+          resources: {}
+      restartPolicy: Always
+status: {}

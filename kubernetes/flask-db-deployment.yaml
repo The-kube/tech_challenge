@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-db
+  labels:
+    app: flask-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask-db
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: flask-db
+    spec:
+      containers:
+        - env:
+            - name: POSTGRES_DB
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              value: postgres
+            - name: POSTGRES_USER
+              value: postgres
+          image: postgres:12
+          name: flask-db
+          ports:
+            - containerPort: 5432
+          resources: {}
+          volumeMounts:
+            - mountPath: ./data
+              name: flask-db-claim0
+      restartPolicy: Always
+      volumes:
+        - name: flask-db-claim0
+          persistentVolumeClaim:
+            claimName: flask-db-claim0
+status: {}
