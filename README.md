@@ -104,7 +104,7 @@ terraform destroy
 remove /etc/hosts reference
 ```
 # Commands and troubleshooting
-### Start up the DB loclly on docker
+### Start up the DB locally on docker
 ```
 docker compose up -d flask_db
 ```
